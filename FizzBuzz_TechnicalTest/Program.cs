@@ -3,7 +3,7 @@
 
 IFizzBuzzGenerator fizzBuzzGenerator = new FizzBuzzGenerator(3,5);
 
-IEnumerable<int> values = fizzBuzzGenerator.GetValuesToInterpret(0, 101);
+IEnumerable<int> values = fizzBuzzGenerator.GetValuesToInterpret(0, 100);
 
 foreach (var item in fizzBuzzGenerator.GetFizzBuzzFromValues(values))
 {

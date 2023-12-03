@@ -57,11 +57,35 @@ namespace UnitTestProject
             Assert.IsTrue(!_fizzBuzzGenerator.GetFizzBuzzFromValues(values).Any(x => x != "Fizz"));
         }
 
+        [TestMethod]
         public void GetFizzBuzz_3Values_Return_Buzz_Success()
         {
             int[] values = new int[] { 5, 20, 140 };
 
             Assert.IsTrue(!_fizzBuzzGenerator.GetFizzBuzzFromValues(values).Any(x => x != "Buzz"));
+        }
+
+        [TestMethod]
+        public void GetFizzBuzz_1_Values_Return_1Results_Success()
+        {
+            IEnumerable<int> values = _fizzBuzzGenerator.GetValuesToInterpret(0, 1);
+
+            Assert.AreEqual(1, _fizzBuzzGenerator.GetFizzBuzzFromValues(values).Count());
+        }
+
+        [TestMethod]
+        public void GetFizzBuzz_100_Values_Return_100Results_Success()
+        {
+            IEnumerable<int> values = _fizzBuzzGenerator.GetValuesToInterpret(0, 100);
+
+            Assert.AreEqual(100, _fizzBuzzGenerator.GetFizzBuzzFromValues(values).Count());
+        }
+        [TestMethod]
+        public void GetFizzBuzz_1000_Values_Return_1000Results_Success()
+        {
+            IEnumerable<int> values = _fizzBuzzGenerator.GetValuesToInterpret(0, 1000);
+
+            Assert.AreEqual(1000, _fizzBuzzGenerator.GetFizzBuzzFromValues(values).Count());
         }
 
 
