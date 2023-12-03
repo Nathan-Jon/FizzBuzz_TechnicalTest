@@ -8,6 +8,7 @@ namespace FizzBuzz_TechnicalTest
 {
     public interface IFizzBuzzGenerator
     {
-        List<string> GetFizzBuzz(IEnumerable<int> values);
+       List<string> GetFizzBuzzFromValues(IEnumerable<int> values);
+       IEnumerable<int> GetValuesToInterpret(int StartNum, int stopNum);
     }
 }

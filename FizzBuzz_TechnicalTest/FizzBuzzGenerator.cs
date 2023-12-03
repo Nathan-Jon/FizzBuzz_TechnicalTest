@@ -1,49 +1,51 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FizzBuzz_TechnicalTest.ExtensionMethods;
+﻿using FizzBuzz_TechnicalTest.ExtensionMethods;
 
 namespace FizzBuzz_TechnicalTest
 {
     public class FizzBuzzGenerator : IFizzBuzzGenerator
     {
-        public List<string> GetFizzBuzz(IEnumerable<int> values)
+        private int FizzDividerValue { get; set; }
+        private int BuzzDividerValue { get; set; }
+
+        public FizzBuzzGenerator(int fizzDividerValue, int buzzDividerValue)
         {
-            int fizzDividerValue = 3;
-            int buzzDividerValue = 5;
-
-            List<string> results = new List<string>();
-
-            if (!values.Any())
-                return results;
-
-            foreach (int value in values)
-            {
-                string result = "";
-
-                if (!HasRemainder(value, fizzDividerValue))
-                    result += "Fizz";
-
-                if (!HasRemainder(value, buzzDividerValue))
-                    result += "Buzz";
-
-                if (result.IsNullOrEmpty())
-                    result = value.ToString();
-
-                results.Add(result);
-            }
-
-            return results;
+            FizzDividerValue = fizzDividerValue;
+            BuzzDividerValue = buzzDividerValue;
         }
 
-        public bool HasRemainder(int value, int dividingValue)
+        public IEnumerable<int> GetValuesToInterpret(int StartNum, int stopNum)
         {
-            if (dividingValue == 0)
-                return true;
+            if (StartNum > stopNum)
+            {
+                Console.WriteLine($"Cannot Generate a list of values with a {nameof(StartNum)} greater than the {nameof(stopNum)}");
+                return Enumerable.Empty<int>();
 
-            return (value % dividingValue) >= 1;
+            }
+            return Enumerable.Range(StartNum, stopNum);
+        }
+
+        public List<string> GetFizzBuzzFromValues(IEnumerable<int> values)
+        {
+            return values.Select(GetFizzBuzzFromValue).ToList();
+        }
+
+        public string GetFizzBuzzFromValue(int value)
+        {
+            if (value == 0)
+                return value.ToString();
+
+            string result = "";
+
+            if (!value.HasRemainder(FizzDividerValue))
+                result += "Fizz";
+
+            if (!value.HasRemainder(BuzzDividerValue))
+                result += "Buzz";
+
+            if (result.IsNullOrEmpty())
+                result = value.ToString();
+
+            return result;
         }
     }
 }

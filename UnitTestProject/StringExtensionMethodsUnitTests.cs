@@ -1,8 +1,7 @@
-using FizzBuzz_TechnicalTest.ExtensionMethods;
 namespace UnitTestProject
 {
     [TestClass]
-    public class ExtensionMethodsUnitTests
+    public class StringExtensionMethodsUnitTests
     {
         [TestMethod]
         public void IsNullOrEmpty_Null_ReturnsTrue()
